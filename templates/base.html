@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PlayGame</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <!-- Additional CSS File -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- Add favicon -->
+    <link rel="icon" href="{% static 'img/favicon.svg' %}">
+</head>
+
+<body>
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <div><a href="{% url 'daily-mission-list' %}">Play Game!</a></div>
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+                            <li><a href="{% url 'daily-mission-list' %}" class="active">Daily Mission</a></li>
+                            <li><a href="{% url 'weekly-mission-list' %}">Weekly Mission</a></li>
+                            <li><a href="{% url 'nomal-mission-list' %}">Nomal Mission</a></li>
+                            {% if user.is_authenticated %}
+                            <li><a href="#">{{ user.username }}</a></li>
+                            <li><a class="text-white" href="{% url 'logout' %}">logout</a></li>
+                            {% else %}
+                            <li><a class="text-white" href="{% url 'login' %}">login</a></li>
+                            <li><a class="text-white" href="{% url 'signup' %}">register user</a></li>
+                            {% endif %}
+                        </ul>
+                        <!-- ***** Menu End ***** -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+    {% block content %}
+    {% endblock content %}
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+
+<!-- Footer -->
+<footer class="text-center text-white">
+    <!-- Copyright -->
+        <p>&copy; 2023 Dax</p>
+    <!-- Copyright -->
+</footer>
+<!-- Footer -->
+
+</html>

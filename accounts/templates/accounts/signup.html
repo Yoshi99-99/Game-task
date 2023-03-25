@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content%}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="page-content">
+                <div class="gaming-library">
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <table class="table text-secondary">
+                            {{ form.as_table }}
+                        </table>
+                        <div class="col-6">
+                            <div class="main-button"><input type="submit" value="register"></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content%}

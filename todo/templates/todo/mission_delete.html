@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content%}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="page-content">
+                <div class="heading-section">
+                    <h4>Task delete</h4>
+                </div>
+                <div class="gaming-library">
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <h4 class="text-secondary mb-3">「{{ object.title }}」を削除していいですか？</h4>
+                        <table>
+                            <tr>
+                                <td>
+                                    <div class="main-button"><input class="bg-danger text-light" type="submit" value="Yes"></div>
+                                </td>
+                                <td>
+                                    {% if 'dmission' in request.path %}
+                                    <div class="main-button"><a href="{% url 'daily-mission-detail' object.pk %}">No</a></div>
+                                    {% elif 'wmission' in request.path %}
+                                    <div class="main-button"><a href="{% url 'weekly-mission-detail' object.pk %}">No</a></div>
+                                    {% elif 'nmission' in request.path %}
+                                    <div class="main-button"><a href="{% url 'nomal-mission-detail' object.pk %}">No</a></div>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content%}

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="page-content">
+                <!-- ***** Gaming Library Start ***** -->
+                <div class="heading-section">
+                    <h4>Play Game!!</h4>
+                </div>
+                {% if user.is_authenticated %}
+                <div class="main-button text-center"><a href="{% url 'weekly-mission-new' %}">new</a></div>
+                {% endif %}
+                <div class="gaming-library">
+                    {% for object in object_list %}
+                    {% if not object.completed %}
+                    <div class="item">
+                        <ul>
+                            <a href="{% url 'weekly-mission-detail' object.pk %}">
+                                <li>
+                                    <span>title<br>
+                                        <h4>{{ object.title }}</h4>
+                                    </span>
+                                </li>
+                                <li>
+                                    <span>deadline<br>
+                                        <h4>{{ object.deadline }}</h4>
+                                    </span>
+                                </li>
+                            </a>
+                            {% if user.is_authenticated %}
+                            <li>
+                                <form method="post" action="{% url 'weekly-mission-update-object' object.pk %}">
+                                    {% csrf_token %}
+                                    <div class="main-border-button"><input type="submit" name="update" value="Clear!"></div>
+                                </form>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                    <!-- ***** Gaming Library End ***** -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

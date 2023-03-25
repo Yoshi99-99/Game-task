@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content%}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="page-content">
+                <div class="heading-section">
+                    {% if 'new' in request.path %}
+                    <h4>Mission Create</h4>
+                    {% elif 'edit' in request.path %}
+                    <h4>Mission Edit</h4>
+                    {% endif %}
+                </div>
+                <div class="gaming-library">
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <table class="table text-secondary item">
+                            {{ form.as_table }}
+                        </table>
+                        <div class="col-6">
+                            {% if 'new' in request.path %}
+                            <div class="main-button"><input type="submit" value="create"></div>
+                            {% elif 'edit' in request.path %}
+                            <div class="main-button"><input type="submit" value="edit"></div>
+                            {% endif %}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content%}
